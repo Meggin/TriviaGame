@@ -6,7 +6,6 @@ $(document).ready(function() {
 
 	// Variables.
 	// ranOutofTime boolean;
-	// correctAnswer boolean;
 	// unansweredQuestion boolean;
 	// questionID;
 	// answerID;
@@ -96,12 +95,6 @@ $(document).ready(function() {
 	// Function: stopTimer
 	// If ranOutofTime is true, or 
 	// Displays stopped time value in the timer span on answer Section.
-
-	// Function: isAnswerCorrect
-	// Takes in answer as parameter.
-	// Determines if answer is correct or not.
-	// Returns a correctAnswer boolean result.
-	// That boolean will get passed to answer Section.
 
 	// Function: displayVideo
 	// Takes in question ID and question's video ID as parameters.
