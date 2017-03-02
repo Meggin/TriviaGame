@@ -1,10 +1,8 @@
 
 // Data
 //_____________________________________________________________________________________
-// Create array of questions.
-// Each question is an object with a question, array of answers, and correct answer.
-// Each question also has a youtube video id.
-
+// The questions object contains question objects.
+// Each question object has a question, array of answers, correct answer, and video ID.
 var questions = {
 	q1 : {
 		question: "Testing question 1",
@@ -38,7 +36,7 @@ var questions = {
 	}
 };
 
-
+// Creates array of questions for questions object.
 var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5];
 
 // Control which page is displayed.
@@ -55,6 +53,8 @@ var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unanswered = 0;
 var section = "";
+var timeNumber = 30;
+var timeIntervalID;
 
 // Event listeners.
 //____________________________________________________________________________________
@@ -69,6 +69,8 @@ function addStartClickListener() {
 
 		// Populates question section.
 		createQuestionSection();
+
+		startTimer();
 	});
 };
 
@@ -86,12 +88,10 @@ function addAnswerClickListener() {
 function addRestartClickListener() {
 	$("#restart").on("click", function() {
 		console.log("Start Over? button clicked");
+
+		// Reset questionID to first question.
+		questionID = questionsArray[0];
 		showSection(startPage);
-		// This is essentially the same as 'start' button at start of game.
-		// But given ids are once-off, and maybe there are some differences,
-		// So I've created this listener too.
-		// Before calling showSection, set question ID to first question.
-		// Calls showSection passing in question Section and question ID.
 	});
 };
 
@@ -117,6 +117,7 @@ function showSection(section) {
 // And call showSection passing in answer Section with question ID and null answer value.
 // Displays content in question section
 function createQuestionSection() {
+	//startTimer(30);
 	displayQuestion();
 };
 
@@ -130,6 +131,44 @@ function displayQuestion() {
 	// Displays question's possible answers.
 	displayQuestionAnswers();
 };
+
+function startTimer() {
+	timeIntervalID = setInterval(decrement, 1000);
+	console.log("Time interval is getting set to: " + timeIntervalID);
+};
+
+function decrement() {
+	console.log("This isn't doing anything yet.");
+};
+
+// Function: startTimer
+// Takes in parameter of timer amount.
+// Starts timer countdown from this amount.
+// If time reaches zero,
+// return ranOutOfTime boolean to true.
+/*function startTimer(){
+	var timer = setInterval(decrement, 1000);
+};
+
+//  The decrement function.
+function decrement(timeLeft) {
+
+	var timeLeft = 30;
+	//  Decrease time left by 1.
+	timeLeft--;
+
+	//  Show time left in the #time tag.
+	$("#time").html(timeLeft);
+
+
+	//  Once time left hits zero...
+	if (timeLeft === 0) {
+
+	//  ...run the stop function.
+	//stop();
+	console.log("Time is out.");
+};
+*/
 
 // Displays question's possible answers.
 function displayQuestionAnswers() {
@@ -154,38 +193,35 @@ function displayQuestionAnswers() {
 
 // Function: createAnswerSection
 // Call stopTimer.
-// If answer is correct,
-// correctAnsers++
-// Display answer correct message in answer-assessment.
-// Don't display correct answer info.
-// Else if answer not correct,
-// incorrectAnswers++,
-// Display answer wrong message in answer-assessment.
-// Display correct answer info.
-// else answer is null (or unanswered)
+// If unanswered (answer is null or unanswered true),
 // unanswered++,
 // Display in answer-assessment the time ran out message.
 // Display correct answer info.
-// For all answer results, call displayVideo with question ID video ID.
 // Calls startTimer passing in answer countdown amount.
 // When startTimer returns,
 // If question ID ++ exists (so there's still more questions to ask),
 // Call showSection for question section, passing in question ++ as question ID.
 // else call showSection for results section passing in unanswered, answered, and incorrect.
-// I might need to set these values here, to make sure they pass accordingly.
-// It may be a little tricky to save values for these variables as questions get answered.
 
 // Displays content in answer section.
 function createAnswerSection(selectedAnswer) {
 	var correctAnswer = questionID.correctAnswer;
+
+	// Selected answer correct answer.
 	if (correctAnswer === selectedAnswer) {
+		
+		// Update correct answers count.
 		correctAnswers++;
-		console.log("CorrectAnswers = " + correctAnswers);
 		$("#answer-assessment").html("Correct!");
+	
+	// Selected answer incorrect answer.
 	} else {
+		
+		// Update incorrect answers count.
 		incorrectAnswers++;
-		console.log("IncorrectAnswers = " + incorrectAnswers);
 		$("#answer-assessment").html("Nope!");
+
+		// Display correct answer information.
 		$("#correct-answer-info").html(correctAnswer);
 	}
 	displayVideo();
@@ -197,19 +233,13 @@ function createAnswerSection(selectedAnswer) {
 // Display incorrect answers count in incorrect-answers span.
 // Display unanswered count in unanswered span.
 
-// Function: startTimer
-// Takes in parameter of timer amount.
-// Starts timer countdown from this amount.
-// If time reaches zero,
-// return ranOutOfTime boolean to true.
 
 // Function: stopTimer
 // If ranOutofTime is true, or 
 // Displays stopped time value in the timer span on answer Section.
 
-// Function: displayVideo
-// Takes in question ID and question's video ID as parameters.
-// Displays and automatically displays video in answer-media section.
+
+// Displays video for correct answer.
 function displayVideo() {
 	var correctVideoLink = questionID.videoLink;
 	console.log("value of src = " + correctVideoLink);
