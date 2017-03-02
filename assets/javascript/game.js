@@ -125,9 +125,9 @@ function createQuestionSection() {
 // Displays question in #question.
 // Displays list of answers for question in #answer-choices.
 function displayQuestion() {
-	questionID = questions.q1.question;
+	questionID = questionsArray[0];
 	console.log(questionID);
-	$("#question").html(questionID);
+	$("#question").html(questionID.question);
 
 	// Displays question's possible answers.
 	displayQuestionAnswers();
@@ -135,13 +135,13 @@ function displayQuestion() {
 
 // Displays question's possible answers.
 function displayQuestionAnswers() {
-	for (var i = 0; i < questions.q1.answers.length; i++) {
+	for (var i = 0; i < questionID.answers.length; i++) {
 
 		// Create answer option list item.
 		var answerOption = $("<li>");
 
 		// Set answer option text to answer in questions array.
-		answerOption.text(questions.q1.answers[i]);
+		answerOption.text(questionID.answers[i]);
 
 		// Append answer option to the list of answer choices.
 		answerOption.appendTo("#answer-choices");
