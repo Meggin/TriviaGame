@@ -53,7 +53,7 @@ var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unanswered = 0;
 var section = "";
-var timeNumber = 30;
+var timeNumber = 5;
 var timeIntervalID;
 
 // Event listeners.
@@ -132,46 +132,36 @@ function displayQuestion() {
 	displayQuestionAnswers();
 };
 
+// Starts timer on question page.
 function startTimer() {
 	timeIntervalID = setInterval(decrement, 1000);
-	console.log("Time interval is getting set to: " + timeIntervalID);
 };
 
+// Decrements time on question page.
 function decrement() {
 	timeNumber--;
 
 	//  Show time in time span.
-     $("#time").html(timeNumber);
+     $(".time").html(timeNumber);
+
+     // If time runs out, question set to unanswered.
+     if (timeNumber === 0) {
+     	setQuestionUnanswered();
+     }
 };
 
-// Function: startTimer
-// Takes in parameter of timer amount.
-// Starts timer countdown from this amount.
-// If time reaches zero,
-// return ranOutOfTime boolean to true.
-/*function startTimer(){
-	var timer = setInterval(decrement, 1000);
+function setQuestionUnanswered() {
+	ranOutofTime = true;
+	console.log("Counting unanswered questions: " + unanswered);
+	showSection(answerPage);
+	selectedAnswer = false;
+	createAnswerSection(selectedAnswer);
 };
 
-//  The decrement function.
-function decrement(timeLeft) {
+function stopTimer() {
+	clearInterval(timeIntervalID);
 
-	var timeLeft = 30;
-	//  Decrease time left by 1.
-	timeLeft--;
-
-	//  Show time left in the #time tag.
-	$("#time").html(timeLeft);
-
-
-	//  Once time left hits zero...
-	if (timeLeft === 0) {
-
-	//  ...run the stop function.
-	//stop();
-	console.log("Time is out.");
 };
-*/
 
 // Displays question's possible answers.
 function displayQuestionAnswers() {
@@ -194,12 +184,6 @@ function displayQuestionAnswers() {
 };
 
 
-// Function: createAnswerSection
-// Call stopTimer.
-// If unanswered (answer is null or unanswered true),
-// unanswered++,
-// Display in answer-assessment the time ran out message.
-// Display correct answer info.
 // Calls startTimer passing in answer countdown amount.
 // When startTimer returns,
 // If question ID ++ exists (so there's still more questions to ask),
@@ -208,6 +192,8 @@ function displayQuestionAnswers() {
 
 // Displays content in answer section.
 function createAnswerSection(selectedAnswer) {
+	
+	stopTimer();
 	var correctAnswer = questionID.correctAnswer;
 
 	// Selected answer correct answer.
@@ -217,30 +203,36 @@ function createAnswerSection(selectedAnswer) {
 		correctAnswers++;
 		$("#answer-assessment").html("Correct!");
 	
-	// Selected answer incorrect answer.
+	// No answer selected.
+	} else if (selectedAnswer === false) {
+		// Update unanswered answers count.
+		unanswered++;
+		$("#answer-assessment").html("Out of Time!");
+
+		// Display correct answer information.
+		$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
+
+	// Selected answer is incorrect.
 	} else {
-		
 		// Update incorrect answers count.
 		incorrectAnswers++;
 		$("#answer-assessment").html("Nope!");
 
 		// Display correct answer information.
-		$("#correct-answer-info").html(correctAnswer);
+		$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
 	}
 	displayVideo();
 };
+
+// Function: stopTimer
+// If ranOutofTime is true, or 
+// Displays stopped time value in the timer span on answer Section.
 
 // Function: createResultsSection
 // Call stopTimer.
 // Display correct answer count in correct-answers span.
 // Display incorrect answers count in incorrect-answers span.
 // Display unanswered count in unanswered span.
-
-
-// Function: stopTimer
-// If ranOutofTime is true, or 
-// Displays stopped time value in the timer span on answer Section.
-
 
 // Displays video for correct answer.
 function displayVideo() {
