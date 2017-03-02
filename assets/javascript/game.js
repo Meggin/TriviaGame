@@ -47,13 +47,12 @@ var resultsPage = $("#results-page");
 
 // More global variables.
 //____________________________________________________________________________________
-var ranOutofTime = false;
 var questionID;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unanswered = 0;
 var section = "";
-var timeNumber = 5;
+var timeNumber = 5
 var timeIntervalID;
 
 // Event listeners.
@@ -67,9 +66,10 @@ function addStartClickListener() {
 		// Shows question page.
 		showSection(questionPage);
 
-		// Populates question section.
-		createQuestionSection();
+		// Displays question and possible answers.
+		displayQuestion();
 
+		// Start question countdown.
 		startTimer();
 	});
 };
@@ -110,27 +110,20 @@ function showSection(section) {
 	}
 };
 
-// Calls startTimer passing in question countdown amount.
-// Calls displayTimer.
-// If startTimer returns true (which means timer reached zero),
-// Set answerID to null or something like that
-// And call showSection passing in answer Section with question ID and null answer value.
-// Displays content in question section
-function createQuestionSection() {
-	//startTimer(30);
-	displayQuestion();
-};
-
-// Displays question in #question.
-// Displays list of answers for question in #answer-choices.
+// Displays question and list of possible answers in DOM.
 function displayQuestion() {
 	questionID = questionsArray[0];
-	console.log(questionID);
 	$("#question").html(questionID.question);
 
 	// Displays question's possible answers.
 	displayQuestionAnswers();
 };
+
+// Starts question timer.
+//function startQuestionTimer() {
+	//timeIntervalID = 30;
+	//startTimer(timeIntervalID);
+//}
 
 // Starts timer on question page.
 function startTimer() {
@@ -144,23 +137,22 @@ function decrement() {
 	//  Show time in time span.
      $(".time").html(timeNumber);
 
-     // If time runs out, question set to unanswered.
+     // If time runs out, set question to unanswered.
      if (timeNumber === 0) {
      	setQuestionUnanswered();
      }
 };
 
+// Set question unanswered.
 function setQuestionUnanswered() {
-	ranOutofTime = true;
-	console.log("Counting unanswered questions: " + unanswered);
 	showSection(answerPage);
 	selectedAnswer = false;
 	createAnswerSection(selectedAnswer);
 };
 
+// Stops timer.
 function stopTimer() {
 	clearInterval(timeIntervalID);
-
 };
 
 // Displays question's possible answers.
@@ -193,10 +185,13 @@ function displayQuestionAnswers() {
 // Displays content in answer section.
 function createAnswerSection(selectedAnswer) {
 	
+	// Stops timer.
 	stopTimer();
+
+	// Get correct answer for question.
 	var correctAnswer = questionID.correctAnswer;
 
-	// Selected answer correct answer.
+	// Selected answer correct.
 	if (correctAnswer === selectedAnswer) {
 		
 		// Update correct answers count.
@@ -212,7 +207,7 @@ function createAnswerSection(selectedAnswer) {
 		// Display correct answer information.
 		$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
 
-	// Selected answer is incorrect.
+	// Selected answer incorrect.
 	} else {
 		// Update incorrect answers count.
 		incorrectAnswers++;
@@ -221,18 +216,29 @@ function createAnswerSection(selectedAnswer) {
 		// Display correct answer information.
 		$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
 	}
+
+	// Display question's video.
 	displayVideo();
+
+	setTimeout(answerTimeOut, 5000);
+
+	// Show Trivia results.
+	//showTriviaResults();
 };
 
-// Function: stopTimer
-// If ranOutofTime is true, or 
-// Displays stopped time value in the timer span on answer Section.
+function answerTimeOut() {
+	showTriviaResults();
+}
 
-// Function: createResultsSection
-// Call stopTimer.
 // Display correct answer count in correct-answers span.
 // Display incorrect answers count in incorrect-answers span.
 // Display unanswered count in unanswered span.
+function showTriviaResults() {
+	showSection(resultsPage);
+	$("#correct-answers").html(correctAnswers);
+	$("#incorrect-answers").html(incorrectAnswers);
+	$("#unanswered").html(unanswered);
+}
 
 // Displays video for correct answer.
 function displayVideo() {
