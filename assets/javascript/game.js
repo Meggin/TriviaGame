@@ -9,31 +9,31 @@ var questions = {
 	q1 : {
 		question: "Testing question 1",
 		answers: ["Testing answer 1.1", "Testing answer 1.2", "Testing answer 1.3"],
-		correctAnswer: "questions.q1.answers[0]",
+		correctAnswer: "Testing answer 1.1",
 		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q2 : {
 		question: "Testing question 2",
 		answers: ["Testing answer 2.1", "Testing answer 2.2", "Testing answer 2.3"],
-		correctAnswer: "questions.q2.answers[0]",
+		correctAnswer: "Testing answer 2.1",
 		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q3 : {
 		question: "Testing question 3",
 		answers: ["Testing answer 3.1", "Testing answer 3.2", "Testing answer 3.3"],
-		correctAnswer: "questions.q3.answers[0]",
+		correctAnswer: "Testing answer 3.1",
 		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q4 : {
 		question: "Testing question 4",
 		answers: ["Testing answer 4.1", "Testing answer 4.2", "Testing answer 4.3"],
-		correctAnswer: "questions.q4.answers[0]",
+		correctAnswer: "Testing answer 4.1",
 		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q5 : {
 		question: "Testing question 5",
 		answers: ["Testing answer 5.1", "Testing answer 5.2", "Testing answer 5.3"],
-		correctAnswer: "questions.q5.answers[0]",
+		correctAnswer: "Testing answer 5.1",
 		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	}
 };
@@ -47,11 +47,11 @@ var questionPage = $("#question-page");
 var answerPage = $("#answer-page");
 var resultsPage = $("#results-page");
 
-// Variables.
+// More global variables.
 //____________________________________________________________________________________
 var ranOutofTime = false;
 var questionID;
-// answerID;
+var answerID;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unanswered = 0;
@@ -78,6 +78,7 @@ function addAnswerClickListener() {
 	$("li").on("click", function() {
 		console.log("Answer list item clicked");
 		showSection(answerPage);
+		createAnswerSection();
 		// Set question ID to question page ID.
 		// Set answer ID to the selected answer.
 		// Calls showSection passing in question ID and answer ID.
@@ -177,6 +178,11 @@ function displayQuestionAnswers() {
 // else call showSection for results section passing in unanswered, answered, and incorrect.
 // I might need to set these values here, to make sure they pass accordingly.
 // It may be a little tricky to save values for these variables as questions get answered.
+function createAnswerSection() {
+	answerID = questionID.correctAnswer;
+	console.log("answerID is " + answerID);
+	$("#correct-answer-info").html(answerID);
+}
 
 // Function: createResultsSection
 // Call stopTimer.
