@@ -64,7 +64,12 @@ var section = "";
 function addStartClickListener() {
 	$("#start").on("click", function() {
 		console.log("Start button clicked");
+		
+		// Shows question page.
 		showSection(questionPage);
+
+		// Populates question section.
+		createQuestionSection();
 	});
 };
 
@@ -95,17 +100,7 @@ function addRestartClickListener() {
 // Functions
 //_____________________________________________________________________________________
 
-
-// Shows active section and hides in-active sections.
-// Takes parameter sectionId. Might need to take in answerID,
-// And correctAnswers, incorrectAnswers, and unanswered too, if I can't keep the counts local.
-// Start section is the default active section. 
-// We don't have to do anything for it, other than make it active, as it displays everything in it,
-// and nothing else.
-// For question Section, call createQuestionSection, passing in questionID.
-// For answer Section, call createAnswerSection, passing in questionID and answerID.
-// For results Section, call createResultsSection, passing in correctAnswers, incorrectAnswers, unanswered.
-
+// Displays active page.
 function showSection(section) {
 	startPage.css({'display' : 'none'});
 	questionPage.css({'display' : 'none'});
@@ -117,13 +112,42 @@ function showSection(section) {
 	}
 };
 
-// Function: createQuestionSection
-// Calls displayQuestion passing in question object.
 // Calls startTimer passing in question countdown amount.
 // Calls displayTimer.
 // If startTimer returns true (which means timer reached zero),
 // Set answerID to null or something like that
 // And call showSection passing in answer Section with question ID and null answer value.
+// Displays content in question section
+function createQuestionSection() {
+	displayQuestion();
+}
+
+// Displays question in #question.
+// Displays list of answers for question in #answer-choices.
+function displayQuestion() {
+	questionID = questions.q1.question;
+	console.log(questionID);
+	$("#question").html(questionID);
+
+	// Displays question's possible answers.
+	displayQuestionAnswers();
+}
+
+// Displays question's possible answers.
+function displayQuestionAnswers() {
+	for (var i = 0; i < questions.q1.answers.length; i++) {
+
+		// Create answer option list item.
+		var answerOption = $("<li>");
+
+		// Set answer option text to answer in questions array.
+		answerOption.text(questions.q1.answers[i]);
+
+		// Append answer option to the list of answer choices.
+		answerOption.appendTo("#answer-choices");
+	}
+}
+
 
 // Function: createAnswerSection
 // Call stopTimer.
@@ -153,11 +177,6 @@ function showSection(section) {
 // Display correct answer count in correct-answers span.
 // Display incorrect answers count in incorrect-answers span.
 // Display unanswered count in unanswered span.
-
-// Function: displayQuestion
-// Takes parameter of question object.
-// Displays question in #question.
-// Displays list of answers for question in #answer-choices.
 
 // Function: startTimer
 // Takes in parameter of timer amount.

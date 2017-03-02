@@ -25,6 +25,7 @@
         <button id="start">Start</button>
       </section>
       <section id="question-page">
+        <div id="question"></div>
         <ol id="answer-choices"></ol>
       </section>
       <section id="answer-page">
@@ -34,7 +35,11 @@
       </section>
       <section id="results-page">
         <div id="summary">All done, here's how you did!</div>
-        <ol id="quiz-results"></ol>
+        <ol id="quiz-results">
+          <li>Correct Answers: <span id="correct-answers"></span></li>
+          <li>Incorrect Answers: <span id="incorrect-answers"></span></li>
+          <li>Unanswered: <span id="unanswered"></span></li>
+        </ol>
         <button id="restart">Start Over?</button>
       </section>
     </div>
