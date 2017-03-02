@@ -138,7 +138,10 @@ function startTimer() {
 };
 
 function decrement() {
-	console.log("This isn't doing anything yet.");
+	timeNumber--;
+
+	//  Show time in time span.
+     $("#time").html(timeNumber);
 };
 
 // Function: startTimer

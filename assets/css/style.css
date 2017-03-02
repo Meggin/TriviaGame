@@ -11,10 +11,6 @@ html {
 	background-size: cover;
 }
 
-section	{
-	display: none;
-}
-
 #feedback {
 	font-size: 1.4em;
 }
