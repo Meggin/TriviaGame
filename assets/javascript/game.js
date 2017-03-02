@@ -10,31 +10,31 @@ var questions = {
 		question: "Testing question 1",
 		answers: ["Testing answer 1.1", "Testing answer 1.2", "Testing answer 1.3"],
 		correctAnswer: "Testing answer 1.1",
-		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q2 : {
 		question: "Testing question 2",
 		answers: ["Testing answer 2.1", "Testing answer 2.2", "Testing answer 2.3"],
 		correctAnswer: "Testing answer 2.1",
-		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q3 : {
 		question: "Testing question 3",
 		answers: ["Testing answer 3.1", "Testing answer 3.2", "Testing answer 3.3"],
 		correctAnswer: "Testing answer 3.1",
-		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q4 : {
 		question: "Testing question 4",
 		answers: ["Testing answer 4.1", "Testing answer 4.2", "Testing answer 4.3"],
 		correctAnswer: "Testing answer 4.1",
-		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q5 : {
 		question: "Testing question 5",
 		answers: ["Testing answer 5.1", "Testing answer 5.2", "Testing answer 5.3"],
 		correctAnswer: "Testing answer 5.1",
-		src: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	}
 };
 
@@ -51,7 +51,6 @@ var resultsPage = $("#results-page");
 //____________________________________________________________________________________
 var ranOutofTime = false;
 var questionID;
-var answerID;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unanswered = 0;
@@ -76,12 +75,10 @@ function addStartClickListener() {
 // Fires when answer list item selected.
 function addAnswerClickListener() {
 	$("li").on("click", function() {
-		console.log("Answer list item clicked");
+		selectedAnswer = $(this).html();
+		console.log("Selected Answer is " + selectedAnswer);
 		showSection(answerPage);
-		createAnswerSection();
-		// Set question ID to question page ID.
-		// Set answer ID to the selected answer.
-		// Calls showSection passing in question ID and answer ID.
+		createAnswerSection(selectedAnswer);
 	});
 };
 
@@ -121,7 +118,7 @@ function showSection(section) {
 // Displays content in question section
 function createQuestionSection() {
 	displayQuestion();
-}
+};
 
 // Displays question in #question.
 // Displays list of answers for question in #answer-choices.
@@ -132,7 +129,7 @@ function displayQuestion() {
 
 	// Displays question's possible answers.
 	displayQuestionAnswers();
-}
+};
 
 // Displays question's possible answers.
 function displayQuestionAnswers() {
@@ -145,15 +142,14 @@ function displayQuestionAnswers() {
 		answerOption.addClass("ui-widget-content");
 
 		// Set answer option text to answer in questions array.
-		answerOption.text(questionID.answers[i]);
+		answerOption.html(questionID.answers[i]);
 
 		// Append answer option to the list of answer choices.
 		answerOption.appendTo(".answer-choices");
-
-		// Listens for answer click event.
-		addAnswerClickListener();
 	}
-}
+	// Listens for answer click event.
+	addAnswerClickListener();
+};
 
 
 // Function: createAnswerSection
@@ -178,11 +174,22 @@ function displayQuestionAnswers() {
 // else call showSection for results section passing in unanswered, answered, and incorrect.
 // I might need to set these values here, to make sure they pass accordingly.
 // It may be a little tricky to save values for these variables as questions get answered.
-function createAnswerSection() {
-	answerID = questionID.correctAnswer;
-	console.log("answerID is " + answerID);
-	$("#correct-answer-info").html(answerID);
-}
+
+// Displays content in answer section.
+function createAnswerSection(selectedAnswer) {
+	var correctAnswer = questionID.correctAnswer;
+	if (correctAnswer === selectedAnswer) {
+		correctAnswers++;
+		console.log("CorrectAnswers = " + correctAnswers);
+		$("#answer-assessment").html("Correct!");
+	} else {
+		incorrectAnswers++;
+		console.log("IncorrectAnswers = " + incorrectAnswers);
+		$("#answer-assessment").html("Nope!");
+		$("#correct-answer-info").html(correctAnswer);
+	}
+	displayVideo();
+};
 
 // Function: createResultsSection
 // Call stopTimer.
@@ -203,6 +210,12 @@ function createAnswerSection() {
 // Function: displayVideo
 // Takes in question ID and question's video ID as parameters.
 // Displays and automatically displays video in answer-media section.
+function displayVideo() {
+	var correctVideoLink = questionID.videoLink;
+	console.log("value of src = " + correctVideoLink);
+	$("#answer-media").attr("src", correctVideoLink);
+};
+
 
 $(document).ready(function() {
 	console.log(questionsArray[0]);
