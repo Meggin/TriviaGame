@@ -75,7 +75,7 @@ function addStartClickListener() {
 
 // Fires when answer list item selected.
 function addAnswerClickListener() {
-	$("#answer").on("click", function() {
+	$("li").on("click", function() {
 		console.log("Answer list item clicked");
 		showSection(answerPage);
 		// Set question ID to question page ID.
@@ -140,11 +140,17 @@ function displayQuestionAnswers() {
 		// Create answer option list item.
 		var answerOption = $("<li>");
 
+		// List item selectable.
+		answerOption.addClass("ui-widget-content");
+
 		// Set answer option text to answer in questions array.
 		answerOption.text(questionID.answers[i]);
 
 		// Append answer option to the list of answer choices.
-		answerOption.appendTo("#answer-choices");
+		answerOption.appendTo(".answer-choices");
+
+		// Listens for answer click event.
+		addAnswerClickListener();
 	}
 }
 
@@ -200,9 +206,6 @@ $(document).ready(function() {
 
 	// Listens for stark click event.
 	addStartClickListener();
-	
-	// Listens for answer click event.
-	addAnswerClickListener();
 	
 	// Listens for restart click event
 	addRestartClickListener();
