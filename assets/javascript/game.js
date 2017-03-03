@@ -8,31 +8,31 @@ var questions = {
 		question: "Where is the entrance to the Chamber of Secrets?",
 		answers: ["Under the Whomping Willow", "In the Slytherin common room", "Girls' bathroom where Moaning Myrtle lives", "In the Great Hall"],
 		correctAnswer: "Girls' bathroom where Moaning Myrtle lives",
-		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q2 : {
 		question: "Who was the Potter's secret keeper before they died?",
 		answers: ["Albus Dumbledore", "Sirius Black", "Peter Pettigrew", "Petunia Dursley"],
 		correctAnswer: "Peter Pettigrew",
-		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q3 : {
 		question: "Who did Hermione take to the Yule Ball in book 4?",
 		answers: ["Ron Weasley", "Viktor Krum", "Cedric Diggory", "Harry Potter"],
 		correctAnswer: "Viktor Krum",
-		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q4 : {
 		question: "Did Harry & Dumbledore find the horcrux in book 6?",
 		answers: ["No. Someone had already taken it.", "They thought they had found it, but it turned out it was only a fake.", "Yes they did.", "Almost, but then they lost it."],
 		correctAnswer: "No. Someone had already taken it.",
-		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q5 : {
 		question: "How many times a week did Harry & Ginny write to James when he was at his first year at Hogwarts?",
 		answers: ["3 times a week", "1 time a week", "Twice a week", "Everyday"],
 		correctAnswer: "3 times a week",
-		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
+		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	}
 };
 
