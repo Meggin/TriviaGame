@@ -5,33 +5,33 @@
 // Each question object has a question, array of answers, correct answer, and video ID.
 var questions = {
 	q1 : {
-		question: "Testing question 1",
-		answers: ["Testing answer 1.1", "Testing answer 1.2", "Testing answer 1.3"],
-		correctAnswer: "Testing answer 1.1",
+		question: "Where is the entrance to the Chamber of Secrets?",
+		answers: ["Under the Whomping Willow", "In the Slytherin common room", "Girls' bathroom where Moaning Myrtle lives", "In the Great Hall"],
+		correctAnswer: "Girls' bathroom where Moaning Myrtle lives",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q2 : {
-		question: "Testing question 2",
-		answers: ["Testing answer 2.1", "Testing answer 2.2", "Testing answer 2.3"],
-		correctAnswer: "Testing answer 2.1",
+		question: "Who was the Potter's secret keeper before they died?",
+		answers: ["Albus Dumbledore", "Sirius Black", "Peter Pettigrew", "Petunia Dursley"],
+		correctAnswer: "Peter Pettigrew",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q3 : {
-		question: "Testing question 3",
-		answers: ["Testing answer 3.1", "Testing answer 3.2", "Testing answer 3.3"],
-		correctAnswer: "Testing answer 3.1",
+		question: "Who did Hermione take to the Yule Ball in book 4?",
+		answers: ["Ron Weasley", "Viktor Krum", "Cedric Diggory", "Harry Potter"],
+		correctAnswer: "Viktor Krum",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q4 : {
-		question: "Testing question 4",
-		answers: ["Testing answer 4.1", "Testing answer 4.2", "Testing answer 4.3"],
-		correctAnswer: "Testing answer 4.1",
+		question: "Did Harry & Dumbledore find the horcrux in book 6?",
+		answers: ["No. Someone had already taken it.", "They thought they had found it, but it turned out it was only a fake.", "Yes they did.", "Almost, but then they lost it."],
+		correctAnswer: "No. Someone had already taken it.",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q5 : {
-		question: "Testing question 5",
-		answers: ["Testing answer 5.1", "Testing answer 5.2", "Testing answer 5.3"],
-		correctAnswer: "Testing answer 5.1",
+		question: "How many times a week did Harry & Ginny write to James when he was at his first year at Hogwarts?",
+		answers: ["3 times a week", "1 time a week", "Twice a week", "Everyday"],
+		correctAnswer: "3 times a week",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	}
 };
