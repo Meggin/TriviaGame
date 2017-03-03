@@ -11,24 +11,82 @@ html {
 	background-size: cover;
 }
 
-#feedback {
-	font-size: 1.4em;
+header {
+	font-family: 'harry_potterregular';
+	font-size: 50px;
+	text-align: center;
+	margin: 5%;
+	color: #FFDF00;
+	text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 
-#selectable .ui-selecting {
-	background: #FECA40;
+li {
+	height: 15%;
+	list-style: none;
+	font-family: sans-serif;
+	margin-top: 1%;
+	padding: 1%;
+	font-size: x-large;
 }
 
-#selectable .ui-selected {
-	background: #F39814; color: white;
+.hover {
+	background-color: #ccc;
+	margin-right: 3%;
 }
 
-#selectable {
-	list-style-type: none; margin: 0; padding: 0; width: 60%;
+#answer-media {
+	width: 65%;
+	height: 55%;
+	margin-top: 2%;
 }
 
-#selectable li {
-	margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px;
+#correct-answer-info,
+#answer-assessment {
+	margin-top: 1%;
+}
+
+section {
+	background-color: #FFDF00;;
+	font-size: 20px;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 10%;
+	height: 375px;
+	text-align: center;
+	font-size: 20px;
+}
+
+button {
+	width: 40%;
+	height: 10%;
+	font-size: 20px;
+	border: 2px solid black;
+	background: #ccc;
+}
+
+#start {
+	margin-top: 24%;
+}
+
+#restart {
+	margin-top: 5%;
+}
+
+.results {
+	font-size: 20px;
+	padding-top: 2%;
+}
+
+#timer {
+	padding-top: 5%;
+	font-size: x-large;
+}
+
+#question,
+#summary {
+	padding-top: 2%;
+	font-size: x-large;
 }
 
 /* 

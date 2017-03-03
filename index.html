@@ -8,8 +8,8 @@
     <title>Harry Potter Trivia Game</title>
     <!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- Linking Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
+    <!-- Linking Custom Harry Potter Font -->
+    <link rel="stylesheet" href="assets/font/stylesheet.css" type="text/css" charset="utf-8" /> 
   </head>
   <body>
 
@@ -30,15 +30,14 @@
         <div id="timer">Time Remaining: <span class="time"></span></div>
         <div id="answer-assessment"></div>
         <div id="correct-answer-info"></div>
-        <iframe id="answer-media" width="640" height="360" src="https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0" frameborder="0" allowfullscreen></iframe>
+        <iframe id="answer-media" width="540" height="275" src="https://www.youtube.com/embed/Rg1LLVWZyg8?autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
       </section>
       <section id="results-page">
+        <div id="timer">Time Remaining: <span class="time"></span></div>
         <div id="summary">All done, here's how you did!</div>
-        <ol id="quiz-results">
-          <li>Correct Answers: <span id="correct-answers"></span></li>
-          <li>Incorrect Answers: <span id="incorrect-answers"></span></li>
-          <li>Unanswered: <span id="unanswered"></span></li>
-        </ol>
+        <div class="results">Correct Answers: <span id="correct-answers"></span></div>
+        <div class="results">Incorrect Answers: <span id="incorrect-answers"></span></div>
+        <div class="results">Unanswered: <span id="unanswered"></span></div>
         <button id="restart">Start Over?</button>
       </section>
     </div>

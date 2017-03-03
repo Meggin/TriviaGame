@@ -1,14 +1,14 @@
 
 // Data
 //_____________________________________________________________________________________
-// The questions object contains question objects.
+// The questions object contains questions.
 // Each question object has a question, array of answers, correct answer, and video ID.
 var questions = {
 	q1 : {
 		question: "Where is the entrance to the Chamber of Secrets?",
-		answers: ["Under the Whomping Willow", "In the Slytherin common room", "Girls' bathroom where Moaning Myrtle lives", "In the Great Hall"],
-		correctAnswer: "Girls' bathroom where Moaning Myrtle lives",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		answers: ["Under the Whomping Willow", "In the Slytherin common room", "Girls' bathroom with Moaning Myrtle", "In the Great Hall"],
+		correctAnswer: "Girls' bathroom with Moaning Myrtle",
+		videoLink: "https://www.youtube.com/embed/j84hGgzIyps"
 	},
 	q2 : {
 		question: "Who was the Potter's secret keeper before they died?",
@@ -24,12 +24,12 @@ var questions = {
 	},
 	q4 : {
 		question: "Did Harry & Dumbledore find the horcrux in book 6?",
-		answers: ["No. Someone had already taken it.", "They thought they had found it, but it turned out it was only a fake.", "Yes they did.", "Almost, but then they lost it."],
+		answers: ["No. Someone had already taken it.", "They thought so but it was a fake.", "Yes they did.", "Almost, but they lost it."],
 		correctAnswer: "No. Someone had already taken it.",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
 	},
 	q5 : {
-		question: "How many times a week did Harry & Ginny write to James when he was at his first year at Hogwarts?",
+		question: "How often did Harry & Ginny write to James at Hogwarts?",
 		answers: ["3 times a week", "1 time a week", "Twice a week", "Everyday"],
 		correctAnswer: "3 times a week",
 		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
@@ -63,10 +63,8 @@ var timeIntervalID;
 function addStartClickListener() {
 	$("#start").on("click", function() {
 		console.log("Start button clicked");
-
-		// Reset question countdown.
-		startTimer();
 		
+		// Reset index so first question on start.
 		index = 0;
 		questionID = questionsArray[index];
 
@@ -76,8 +74,17 @@ function addStartClickListener() {
 		// Displays question and possible answers.
 		displayQuestion();
 
-		// Reset game settings.
-		resetGameSettings();
+		// Start question countdown.
+		startTimer();
+
+		// Reset correct answer counter.
+		correctAnswers = 0;
+
+		// Reset incorrect answers counter.
+		incorrectAnswers = 0;
+
+		// Reset unanswered counter.
+		unanswered = 0;
 
 	});
 };
@@ -85,17 +92,21 @@ function addStartClickListener() {
 // Fires when answer list item selected.
 function addAnswerClickListener() {
 	$("li").on("click", function() {
+		
+		// Set selected answer to selected list item.
 		selectedAnswer = $(this).html();
-		console.log("Selected Answer is " + selectedAnswer);
+
+		// Show answer page.
 		showSection(answerPage);
+
+		// Add answer information to answer page.
 		createAnswerSection(selectedAnswer);
 	});
 };
 
-// When fired, simply returns to start page.
+// When fired, returns to start page.
 function addRestartClickListener() {
 	$("#restart").on("click", function() {
-		console.log("Start Over? button clicked");
 		showSection(startPage);
 	});
 };
@@ -103,7 +114,7 @@ function addRestartClickListener() {
 // Functions
 //_____________________________________________________________________________________
 
-// Displays active page.
+// Displays only one active page.
 function showSection(section) {
 	startPage.css({'display' : 'none'});
 	questionPage.css({'display' : 'none'});
@@ -113,18 +124,6 @@ function showSection(section) {
 	if (section) {
 		section.css({'display' : 'block'});
 	}
-};
-
-function resetGameSettings() {
-
-	// Reset correct answer count.
-	correctAnswers = 0;
-
-	// Reset incorrect answer count.
-	incorrectAnswers = 0;
-
-	// Reset unanswered count.
-	unanswered = 0;
 };
 
 // Displays question and list of possible answers in DOM.
@@ -137,7 +136,7 @@ function displayQuestion() {
 
 // Starts timer on question page.
 function startTimer() {
-	timeIntervalID = setInterval(decrement, 1000);
+	timeIntervalID = setInterval(decrement, 4000);
 };
 
 // Decrements time on question page.
@@ -165,7 +164,7 @@ function stopTimer() {
 	clearInterval(timeIntervalID);
 };
 
-// Displays question's possible answers.
+// Displays possible answers to question.
 function displayQuestionAnswers() {
 
 	// Empties out existing answers from previous question.
@@ -186,6 +185,13 @@ function displayQuestionAnswers() {
 		// Append answer option to the list of answer choices.
 		answerOption.appendTo(".answer-choices");
 	}
+
+	$("li").hover(function() {
+			$(this).addClass("hover");
+		}, function() {
+			$(this).removeClass("hover");
+		}
+	);
 	// Listens for answer click event.
 	addAnswerClickListener();
 };
@@ -229,10 +235,8 @@ function createAnswerSection(selectedAnswer) {
 	// Display question's video.
 	displayVideo();
 
-	setTimeout(answerTimeOut, 4000);
-
-	// Show Trivia results.
-	//showTriviaResults();
+	// Length of time answer page appears.
+	setTimeout(answerTimeOut, 1000);
 };
 
 // Called when answer page times out.
@@ -258,7 +262,7 @@ function showTriviaResults() {
 	$("#unanswered").html(unanswered);
 }
 
-// Displays video for correct answer.
+// Display video for correct answer.
 function displayVideo() {
 	var correctVideoLink = questionID.videoLink;
 	console.log("value of src = " + correctVideoLink);
@@ -268,6 +272,7 @@ function displayVideo() {
 // Go to next question.
 function goToNextQuestion(){
 
+	// Display question page.
 	showSection(questionPage);
 
 	// Empties out existing answers from previous question.
@@ -283,6 +288,8 @@ function goToNextQuestion(){
 
 // Resets question timer.
 function resetTimer() {
+	
+	// Timer interval countdowns from 5 seconds.
 	timeNumber = 5;
 
 	// Starts timer with time number reset.
