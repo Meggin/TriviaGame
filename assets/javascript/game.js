@@ -63,6 +63,8 @@ function addStartClickListener() {
 	$("#start").on("click", function() {
 		console.log("Start button clicked");
 		
+		questionID = questionsArray[0];
+
 		// Shows question page.
 		showSection(questionPage);
 
@@ -112,7 +114,6 @@ function showSection(section) {
 
 // Displays question and list of possible answers in DOM.
 function displayQuestion() {
-	questionID = questionsArray[0];
 	$("#question").html(questionID.question);
 
 	// Displays question's possible answers.
@@ -157,6 +158,8 @@ function stopTimer() {
 
 // Displays question's possible answers.
 function displayQuestionAnswers() {
+
+	// Creates new list of answers for question.
 	for (var i = 0; i < questionID.answers.length; i++) {
 
 		// Create answer option list item.
@@ -227,7 +230,8 @@ function createAnswerSection(selectedAnswer) {
 };
 
 function answerTimeOut() {
-	showTriviaResults();
+	//showTriviaResults();
+	goToNextQuestion();
 }
 
 // Display correct answer count in correct-answers span.
@@ -247,10 +251,31 @@ function displayVideo() {
 	$("#answer-media").attr("src", correctVideoLink);
 };
 
+function goToNextQuestion(){
+	questionID = questionsArray[1];
+
+	showSection(questionPage);
+
+	// Empties out existing answers from previous question.
+	$( ".answer-choices" ).empty();
+
+	// Displays question and possible answers.
+	displayQuestion();
+
+	resetTimer();
+
+	// Start question countdown.
+	//startTimer();
+
+}
+
+function resetTimer() {
+	timeNumber = 5;
+	startTimer();
+}
 
 $(document).ready(function() {
-	console.log(questionsArray[0]);
-	
+
 	// Displays start page.
 	showSection(startPage);
 
