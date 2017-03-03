@@ -64,6 +64,7 @@ function addStartClickListener() {
 	$("#start").on("click", function() {
 		console.log("Start button clicked");
 		
+		index = 0;
 		questionID = questionsArray[index];
 
 		// Shows question page.
@@ -74,6 +75,13 @@ function addStartClickListener() {
 
 		// Start question countdown.
 		startTimer();
+
+		correctAnswers = 0;
+
+		incorrectAnswers = 0;
+
+		unanswered = 0;
+
 	});
 };
 
@@ -91,9 +99,6 @@ function addAnswerClickListener() {
 function addRestartClickListener() {
 	$("#restart").on("click", function() {
 		console.log("Start Over? button clicked");
-
-		// Reset questionID to first question.
-		questionID = questionsArray[0];
 		showSection(startPage);
 	});
 };
@@ -160,6 +165,9 @@ function stopTimer() {
 // Displays question's possible answers.
 function displayQuestionAnswers() {
 
+	// Empties out existing answers from previous question.
+	$( ".answer-choices" ).empty();
+
 	// Creates new list of answers for question.
 	for (var i = 0; i < questionID.answers.length; i++) {
 
@@ -195,9 +203,15 @@ function createAnswerSection(selectedAnswer) {
 	// Get correct answer for question.
 	var correctAnswer = questionID.correctAnswer;
 
+	// Display correct answer information.
+	$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
+
 	// Selected answer correct.
 	if (correctAnswer === selectedAnswer) {
 		
+		// Empty out preview question's correct answer information.
+		$("#correct-answer-info").empty();
+
 		// Update correct answers count.
 		correctAnswers++;
 		$("#answer-assessment").html("Correct!");
@@ -208,23 +222,17 @@ function createAnswerSection(selectedAnswer) {
 		unanswered++;
 		$("#answer-assessment").html("Out of Time!");
 
-		// Display correct answer information.
-		$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
-
 	// Selected answer incorrect.
 	} else {
 		// Update incorrect answers count.
 		incorrectAnswers++;
 		$("#answer-assessment").html("Nope!");
-
-		// Display correct answer information.
-		$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
 	}
 
 	// Display question's video.
 	displayVideo();
 
-	setTimeout(answerTimeOut, 5000);
+	setTimeout(answerTimeOut, 2000);
 
 	// Show Trivia results.
 	//showTriviaResults();
