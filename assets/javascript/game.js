@@ -48,6 +48,7 @@ var resultsPage = $("#results-page");
 // More global variables.
 //____________________________________________________________________________________
 var questionID;
+var index = 0;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var unanswered = 0;
@@ -63,7 +64,7 @@ function addStartClickListener() {
 	$("#start").on("click", function() {
 		console.log("Start button clicked");
 		
-		questionID = questionsArray[0];
+		questionID = questionsArray[index];
 
 		// Shows question page.
 		showSection(questionPage);
@@ -230,11 +231,10 @@ function createAnswerSection(selectedAnswer) {
 };
 
 function answerTimeOut() {
-	//showTriviaResults();
-	var index = questionsArray.indexOf();
 
-	if (index >= 0 && index  questionsArray.length - 1) {
-		questionID = questionsArray[index + 1];
+	if (index < questionsArray.length - 1) {
+		index++;
+		questionID = questionsArray[index];
 		goToNextQuestion();
 	} else {
 		showTriviaResults();
