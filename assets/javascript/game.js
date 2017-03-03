@@ -8,31 +8,31 @@ var questions = {
 		question: "Where is the entrance to the Chamber of Secrets?",
 		answers: ["Under the Whomping Willow", "In the Slytherin common room", "Girls' bathroom where Moaning Myrtle lives", "In the Great Hall"],
 		correctAnswer: "Girls' bathroom where Moaning Myrtle lives",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
 	},
 	q2 : {
 		question: "Who was the Potter's secret keeper before they died?",
 		answers: ["Albus Dumbledore", "Sirius Black", "Peter Pettigrew", "Petunia Dursley"],
 		correctAnswer: "Peter Pettigrew",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
 	},
 	q3 : {
 		question: "Who did Hermione take to the Yule Ball in book 4?",
 		answers: ["Ron Weasley", "Viktor Krum", "Cedric Diggory", "Harry Potter"],
 		correctAnswer: "Viktor Krum",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
 	},
 	q4 : {
 		question: "Did Harry & Dumbledore find the horcrux in book 6?",
 		answers: ["No. Someone had already taken it.", "They thought they had found it, but it turned out it was only a fake.", "Yes they did.", "Almost, but then they lost it."],
 		correctAnswer: "No. Someone had already taken it.",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
 	},
 	q5 : {
 		question: "How many times a week did Harry & Ginny write to James when he was at his first year at Hogwarts?",
 		answers: ["3 times a week", "1 time a week", "Twice a week", "Everyday"],
 		correctAnswer: "3 times a week",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/qAEN798to8g&autoplay=1&controls=0"
 	}
 };
 
@@ -63,6 +63,9 @@ var timeIntervalID;
 function addStartClickListener() {
 	$("#start").on("click", function() {
 		console.log("Start button clicked");
+
+		// Reset question countdown.
+		startTimer();
 		
 		index = 0;
 		questionID = questionsArray[index];
@@ -73,14 +76,8 @@ function addStartClickListener() {
 		// Displays question and possible answers.
 		displayQuestion();
 
-		// Start question countdown.
-		startTimer();
-
-		correctAnswers = 0;
-
-		incorrectAnswers = 0;
-
-		unanswered = 0;
+		// Reset game settings.
+		resetGameSettings();
 
 	});
 };
@@ -95,7 +92,7 @@ function addAnswerClickListener() {
 	});
 };
 
-// Fires when start over? button clicked.
+// When fired, simply returns to start page.
 function addRestartClickListener() {
 	$("#restart").on("click", function() {
 		console.log("Start Over? button clicked");
@@ -118,6 +115,18 @@ function showSection(section) {
 	}
 };
 
+function resetGameSettings() {
+
+	// Reset correct answer count.
+	correctAnswers = 0;
+
+	// Reset incorrect answer count.
+	incorrectAnswers = 0;
+
+	// Reset unanswered count.
+	unanswered = 0;
+};
+
 // Displays question and list of possible answers in DOM.
 function displayQuestion() {
 	$("#question").html(questionID.question);
@@ -125,12 +134,6 @@ function displayQuestion() {
 	// Displays question's possible answers.
 	displayQuestionAnswers();
 };
-
-// Starts question timer.
-//function startQuestionTimer() {
-	//timeIntervalID = 30;
-	//startTimer(timeIntervalID);
-//}
 
 // Starts timer on question page.
 function startTimer() {
@@ -187,13 +190,6 @@ function displayQuestionAnswers() {
 	addAnswerClickListener();
 };
 
-
-// Calls startTimer passing in answer countdown amount.
-// When startTimer returns,
-// If question ID ++ exists (so there's still more questions to ask),
-// Call showSection for question section, passing in question ++ as question ID.
-// else call showSection for results section passing in unanswered, answered, and incorrect.
-
 // Displays content in answer section.
 function createAnswerSection(selectedAnswer) {
 	
@@ -206,7 +202,7 @@ function createAnswerSection(selectedAnswer) {
 	// Display correct answer information.
 	$("#correct-answer-info").html("The correct Answer was: " + correctAnswer);
 
-	// Selected answer correct.
+	// If selected answer correct...
 	if (correctAnswer === selectedAnswer) {
 		
 		// Empty out preview question's correct answer information.
@@ -216,13 +212,14 @@ function createAnswerSection(selectedAnswer) {
 		correctAnswers++;
 		$("#answer-assessment").html("Correct!");
 	
-	// No answer selected.
+	// Else if no answer selected.
 	} else if (selectedAnswer === false) {
+		
 		// Update unanswered answers count.
 		unanswered++;
 		$("#answer-assessment").html("Out of Time!");
 
-	// Selected answer incorrect.
+	// Else selected answer incorrect.
 	} else {
 		// Update incorrect answers count.
 		incorrectAnswers++;
@@ -232,26 +229,28 @@ function createAnswerSection(selectedAnswer) {
 	// Display question's video.
 	displayVideo();
 
-	setTimeout(answerTimeOut, 2000);
+	setTimeout(answerTimeOut, 4000);
 
 	// Show Trivia results.
 	//showTriviaResults();
 };
 
+// Called when answer page times out.
 function answerTimeOut() {
 
+	// If there's another question, display it.
 	if (index < questionsArray.length - 1) {
 		index++;
 		questionID = questionsArray[index];
 		goToNextQuestion();
+
+	// If there's no more questions, show results.
 	} else {
 		showTriviaResults();
 	}
 }
 
-// Display correct answer count in correct-answers span.
-// Display incorrect answers count in incorrect-answers span.
-// Display unanswered count in unanswered span.
+// Display correct, incorrect, and unanswered question counts.
 function showTriviaResults() {
 	showSection(resultsPage);
 	$("#correct-answers").html(correctAnswers);
@@ -266,6 +265,7 @@ function displayVideo() {
 	$("#answer-media").attr("src", correctVideoLink);
 };
 
+// Go to next question.
 function goToNextQuestion(){
 
 	showSection(questionPage);
@@ -276,12 +276,16 @@ function goToNextQuestion(){
 	// Displays question and possible answers.
 	displayQuestion();
 
+	// Resets question timer.
 	resetTimer();
 
 }
 
+// Resets question timer.
 function resetTimer() {
 	timeNumber = 5;
+
+	// Starts timer with time number reset.
 	startTimer();
 }
 
