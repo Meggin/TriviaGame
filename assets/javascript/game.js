@@ -231,7 +231,14 @@ function createAnswerSection(selectedAnswer) {
 
 function answerTimeOut() {
 	//showTriviaResults();
-	goToNextQuestion();
+	var index = questionsArray.indexOf();
+
+	if (index >= 0 && index  questionsArray.length - 1) {
+		questionID = questionsArray[index + 1];
+		goToNextQuestion();
+	} else {
+		showTriviaResults();
+	}
 }
 
 // Display correct answer count in correct-answers span.
@@ -252,7 +259,6 @@ function displayVideo() {
 };
 
 function goToNextQuestion(){
-	questionID = questionsArray[1];
 
 	showSection(questionPage);
 
@@ -263,9 +269,6 @@ function goToNextQuestion(){
 	displayQuestion();
 
 	resetTimer();
-
-	// Start question countdown.
-	//startTimer();
 
 }
 
