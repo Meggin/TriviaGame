@@ -23,6 +23,8 @@ I learned a couple of very cool things this week, worth calling out:
 
 * How to see the values of variables in Chrome Dev Tools, paying attention to Global and Local distinctions.
 
+* How to work with youtube embeds to make the behave the way you want them to.
+
 I also learned how to how to better structure my JavaScript. I asked a JavaScript engineer to look at my very poorly structured JS in [Star Wars Game](https://desolate-taiga-32749.herokuapp.com/), and give me some pointers on what to do differently next time. Out of this, I learned to put as little as possible in the document.ready(). I learned to write very small functions, even one liners, if possible. I learned to pay attention to declaring variables (especially remembering to put 'var' before i in for loops).
 
 Onwards to next week!
