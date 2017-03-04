@@ -32,7 +32,7 @@ var questions = {
 		question: "How often did Harry & Ginny write to James at Hogwarts?",
 		answers: ["3 times a week", "1 time a week", "Twice a week", "Everyday"],
 		correctAnswer: "3 times a week",
-		videoLink: "https://www.youtube.com/embed/04Uc7pf4DIw?autoplay=1&controls=0&start=11"
+		videoLink: "https://www.youtube.com/embed/04Uc7pf4DIw?autoplay=1&controls=0&start=20"
 	}
 };
 
