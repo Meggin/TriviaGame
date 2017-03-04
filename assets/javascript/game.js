@@ -236,7 +236,7 @@ function createAnswerSection(selectedAnswer) {
 	displayVideo();
 
 	// Length of time answer page appears.
-	setTimeout(answerTimeOut, 1000);
+	setTimeout(answerTimeOut, 5000);
 };
 
 // Called when answer page times out.
