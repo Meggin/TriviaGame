@@ -8,31 +8,31 @@ var questions = {
 		question: "Where is the entrance to the Chamber of Secrets?",
 		answers: ["Under the Whomping Willow", "In the Slytherin common room", "Girls' bathroom with Moaning Myrtle", "In the Great Hall"],
 		correctAnswer: "Girls' bathroom with Moaning Myrtle",
-		videoLink: "https://www.youtube.com/embed/j84hGgzIyps"
+		videoLink: "https://www.youtube.com/embed/_0GqXb8m0Jg?autoplay=1&controls=0"
 	},
 	q2 : {
 		question: "Who was the Potter's secret keeper before they died?",
 		answers: ["Albus Dumbledore", "Sirius Black", "Peter Pettigrew", "Petunia Dursley"],
 		correctAnswer: "Peter Pettigrew",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/62lD2BSrbH4?autoplay=1&controls=0"
 	},
 	q3 : {
 		question: "Who did Hermione take to the Yule Ball in book 4?",
 		answers: ["Ron Weasley", "Viktor Krum", "Cedric Diggory", "Harry Potter"],
 		correctAnswer: "Viktor Krum",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/RQBW0aDOaxM?autoplay=1&controls=0"
 	},
 	q4 : {
 		question: "Did Harry & Dumbledore find the horcrux in book 6?",
 		answers: ["No. Someone had already taken it.", "They thought so but it was a fake.", "Yes they did.", "Almost, but they lost it."],
 		correctAnswer: "No. Someone had already taken it.",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/Y616xJLOMmc?autoplay=1&controls=0"
 	},
 	q5 : {
 		question: "How often did Harry & Ginny write to James at Hogwarts?",
 		answers: ["3 times a week", "1 time a week", "Twice a week", "Everyday"],
 		correctAnswer: "3 times a week",
-		videoLink: "https://www.youtube.com/embed/-gOMfsWefVA?list=PLysEUMhoon6cA16AhpYW96KvlRgEXBUE9"
+		videoLink: "https://www.youtube.com/embed/04Uc7pf4DIw?autoplay=1&controls=0"
 	}
 };
 
@@ -136,7 +136,7 @@ function displayQuestion() {
 
 // Starts timer on question page.
 function startTimer() {
-	timeIntervalID = setInterval(decrement, 4000);
+	timeIntervalID = setInterval(decrement, 1000);
 };
 
 // Decrements time on question page.
