@@ -34,17 +34,6 @@ li {
 	margin-right: 3%;
 }
 
-#answer-media {
-	width: 55%;
-	height: 55%;
-	margin-top: 2%;
-}
-
-#correct-answer-info,
-#answer-assessment {
-	margin-top: 1%;
-}
-
 section {
 	background-color: #FFDF00;;
 	font-size: 20px;
@@ -65,6 +54,17 @@ button {
 	background: #ccc;
 }
 
+#answer-media {
+	width: 55%;
+	height: 55%;
+	margin-top: 2%;
+}
+
+#correct-answer-info,
+#answer-assessment {
+	margin-top: 1%;
+}
+
 #start {
 	margin-top: 24%;
 }
@@ -73,12 +73,7 @@ button {
 	margin-top: 5%;
 }
 
-.results {
-	font-size: 20px;
-	padding-top: 2%;
-}
-
-#timer {
+.timer {
 	padding-top: 5%;
 	font-size: x-large;
 }
@@ -87,6 +82,11 @@ button {
 #summary {
 	padding-top: 2%;
 	font-size: x-large;
+}
+
+.results {
+	font-size: 20px;
+	padding-top: 2%;
 }
 
 /* 
@@ -118,7 +118,6 @@ button {
   is 1024px or more.
 */
 @media screen and (min-width: 1024px) {
-
 	
 	#start {
 		margin-top: 21%;
@@ -127,9 +126,6 @@ button {
 	#answer-media {
 		width: 43%;
 	}
-
-
-
 }
 
 /* 
@@ -166,23 +162,23 @@ button {
 */
 @media screen and (max-width: 640px) {
 	
-
-	#answer-media {
-		height: 57%;
-		margin-top: 7%;
-	}
-
 	header {
 		font-size: 31px;
-	}
-
-	#start {
-		margin-top: 48%;
 	}
 
 	ol {
 		-webkit-padding-start: 10px;
 		font-size: large;
+	}
+
+	#answer-media {
+		height: 57%;
+		width: 85%;
+		margin-top: 7%;
+	}
+
+	#start {
+		margin-top: 48%;
 	}
 
 	#restart {
